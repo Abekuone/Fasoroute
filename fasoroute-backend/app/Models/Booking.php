@@ -14,8 +14,8 @@ class Booking extends Model
         'passenger_id',
         'status',
         'seats_reserved',
-        'extra_luggage'
-        
+        'extra_luggage',
+        'total_price'
     ];
 
     public function trip()

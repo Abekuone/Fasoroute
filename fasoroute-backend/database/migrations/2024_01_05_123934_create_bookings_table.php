@@ -15,6 +15,7 @@ class CreateBookingsTable extends Migration
             $table->string('status'); 
             $table->integer('seats_reserved');
             $table->integer('extra_luggage')->default(0);
+            $table->integer('total_price');
             $table->timestamps();
         });
     }

@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\ProfileController;
-use Laravel\Sanctum\Http\Controllers\TokenController;
 use App\Http\Controllers\Trip\TripController;
+use App\Http\Controllers\Booking\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +47,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/all-trips', [TripController::class, 'index']);
         Route::put('/update-trip/{id}', [TripController::class, 'update']);
         Route::delete('/delete-trip/{id}', [TripController::class, 'destroy']);
+    });
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('bookings')->group(function () {
+        Route::post('/{tripId}/create', [BookingController::class, 'store']);
+        Route::get('/list', [BookingController::class, 'index']);
+        Route::get('/show/{id}', [BookingController::class, 'show']);
+        Route::put('/update/{id}', [BookingController::class, 'update']);
+        Route::delete('/delete/{id}', [BookingController::class, 'destroy']);
     });
 });
